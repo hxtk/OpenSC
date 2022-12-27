@@ -58,6 +58,7 @@ enum {
 	OPT_SHA224,
 	OPT_MD5,
 	OPT_PKCS1,
+	OPT_OAEP,
 	OPT_BIND_TO_AID,
 	OPT_VERSION,
 };
@@ -79,6 +80,7 @@ static const struct option options[] = {
 	{ "sha-224",		0, NULL,		OPT_SHA224 },
 	{ "md5",		0, NULL,		OPT_MD5 },
 	{ "pkcs1",		0, NULL,		OPT_PKCS1 },
+	{ "oaep",		0, NULL,		OPT_PKCS1 },
 	{ "pin",		1, NULL,		'p' },
 	{ "aid",		1, NULL,		OPT_BIND_TO_AID },
 	{ "wait",		0, NULL,		'w' },
@@ -103,6 +105,7 @@ static const char *option_help[] = {
 	"Input file is a SHA-224 hash",
 	"Input file is a MD5 hash",
 	"Use PKCS #1 v1.5 padding",
+	"Use OAEP padding",
 	"Uses password (PIN) <arg> (use - for reading PIN from STDIN)",
 	"Specify AID of the on-card PKCS#15 application to be binded to (in hexadecimal form)",
 	"Wait for card insertion",
@@ -445,6 +448,9 @@ int main(int argc, char *argv[])
 			break;
 		case OPT_PKCS1:
 			opt_crypt_flags |= SC_ALGORITHM_RSA_PAD_PKCS1;
+			break;
+		case OPT_OAEP:
+			opt_crypt_flags |= SC_ALGORITHM_RSA_PAD_OAEP;
 			break;
 		case 'v':
 			verbose++;

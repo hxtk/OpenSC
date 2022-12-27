@@ -121,6 +121,20 @@
 
 				<varlistentry>
 					<term>
+						<option>--oaep</option>
+					</term>
+					<listitem><para>By default, <command>pkcs15-crypt</command>
+					assumes that input data has been padded to the correct length
+					(i.e. when computing an RSA signature using a 1024 bit key,
+					the input must be padded to 128 bytes to match the modulus
+					length). When giving the <option>--oaep</option> option,
+					however, <command>pkcs15-crypt</command> will perform the
+					required padding using the Optimal Asymmetric Encryption Padding
+          algorithm outlined in RFC 3447 Section 7.1.</para></listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term>
 						<option>--raw</option>,
 						<option>-R</option>
 					</term>
